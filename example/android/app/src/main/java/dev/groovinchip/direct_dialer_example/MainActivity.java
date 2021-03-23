@@ -1,4 +1,4 @@
-package dev.groovinchip.call_number_example;
+package dev.groovinchip.direct_dialer_example;
 
 import io.flutter.embedding.android.FlutterActivity;
 

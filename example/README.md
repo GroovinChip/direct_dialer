@@ -1,6 +1,6 @@
-# call_number_example
+# direct_dialer_example
 
-Demonstrates how to use the call_number plugin.
+Demonstrates how to use the direct_dialer plugin.
 
 ## Getting Started
 
