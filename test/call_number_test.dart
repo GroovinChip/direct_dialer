@@ -9,7 +9,7 @@ void main() {
 
   setUp(() {
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
+      return returnsNormally;
     });
   });
 
@@ -17,7 +17,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await CallNumber.platformVersion, '42');
+  test('callNumber', () async {
+    expect(() => CallNumber.callNumber('4433793985'), returnsNormally);
   });
 }
