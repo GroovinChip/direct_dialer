@@ -1,8 +1,6 @@
+import 'package:direct_dialer/direct_dialer.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
 import 'package:flutter/services.dart';
-import 'package:call_number/call_number.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,8 +32,9 @@ class _MyAppState extends State<MyApp> {
           IconButton(
             icon: Icon(Icons.call),
             onPressed: () async {
-              if (_controller.text != null)
-                await CallNumber.callNumber(_controller.text);
+              if (_controller.text != null) {
+                await DirectDialer.dial(_controller.text);
+              }
             },
           ),
         ]),

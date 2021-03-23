@@ -1,6 +1,6 @@
-name: call_number
-description: Call phone numbers directly
-version: 0.0.1
+name: direct_dialer
+description: Allows Flutter applications to directly dial a phone number.
+version: 0.1.0
 author: GroovinChip <groovinchip@gmail.com>
 homepage: ''
 
@@ -11,10 +11,12 @@ dependencies:
   flutter:
     sdk: flutter
     
+  device_info_plus: ^1.0.0
   intent:
     git:
       url: git@github.com:nagoya0/intent.git
       ref: 08331747b05d3ef2cdf81979825eb3d05a035190
+  permission_handler: ^6.1.1
 
 dev_dependencies:
   flutter_test:
@@ -32,7 +34,7 @@ flutter:
   plugin:
     platforms:
       ios:
-        pluginClass: CallNumberPlugin
+        pluginClass: DirectDialerPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

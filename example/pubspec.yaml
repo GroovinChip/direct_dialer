@@ -1,9 +1,7 @@
-name: call_number_example
-description: Demonstrates how to use the call_number plugin.
-
-# The following line prevents the package from being accidentally published to
-# pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+name: direct_dialer_example
+description: Demonstrates how to use the direct_dialer plugin.
+version: 1.0.0
+publish_to: 'none'
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -12,9 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  call_number:
+  direct_dialer:
     # When depending on this package from a real application you should use:
-    #   call_number: ^x.y.z
+    #   direct_dialer: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.

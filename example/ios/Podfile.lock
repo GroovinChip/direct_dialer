@@ -1,21 +1,33 @@
 PODS:
-  - call_number (0.0.1):
+  - device_info_plus (0.0.1):
+    - Flutter
+  - direct_dialer (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - "permission_handler (5.1.0+2)":
+    - Flutter
 
 DEPENDENCIES:
-  - call_number (from `.symlinks/plugins/call_number/ios`)
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
+  - direct_dialer (from `.symlinks/plugins/direct_dialer/ios`)
   - Flutter (from `Flutter`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
 
 EXTERNAL SOURCES:
-  call_number:
-    :path: ".symlinks/plugins/call_number/ios"
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
+  direct_dialer:
+    :path: ".symlinks/plugins/direct_dialer/ios"
   Flutter:
     :path: Flutter
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
 
 SPEC CHECKSUMS:
-  call_number: f81356878ef4b14a0f440ffc1fc4103d57ce11e0
+  device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
+  direct_dialer: 47a81737464ef2bb231e3bda4d3ac6ec6ff8bb07
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
 
 PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
 

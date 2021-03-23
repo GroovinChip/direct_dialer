@@ -1,9 +1,9 @@
+import 'package:direct_dialer/direct_dialer.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:call_number/call_number.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('call_number');
+  const MethodChannel channel = MethodChannel('direct_dialer');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -17,7 +17,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('callNumber', () async {
-    expect(() => CallNumber.callNumber('4433793985'), returnsNormally);
+  test('directDial', () async {
+    expect(() => DirectDialer.dial('4433793985'), returnsNormally);
   });
 }

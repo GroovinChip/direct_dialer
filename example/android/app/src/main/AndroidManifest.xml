@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.groovinchip.call_number_example">
+    package="dev.groovinchip.direct_dialer_example">
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
    <application
-        android:label="call_number_example"
+        android:label="direct_dialer_example"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
