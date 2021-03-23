@@ -11,18 +11,17 @@ import 'package:url_launcher/url_launcher.dart' as url_launcher;
 class DirectDialer {
   DirectDialer._();
 
-  static Future<DirectDialer> init() async {
-    final directDialer = DirectDialer._();
-    await directDialer._init();
-    return directDialer;
-  }
+  static Future<DirectDialer> get instance => _init();
 
-  Future<void> _init() async {
+  static Future<DirectDialer> _init() async {
+    final directDialer = DirectDialer._();
     if (Platform.isIOS) {
       _iosDeviceInfo = await DeviceInfoPlugin().iosInfo;
       onIpad = await DirectDialer._isIpad();
     }
+    return directDialer;
   }
+
 
   static const MethodChannel _channel = const MethodChannel('direct_dialer');
   static late IosDeviceInfo _iosDeviceInfo;
@@ -86,6 +85,7 @@ class DirectDialer {
     }
   }
 
+  /// Checks if the current iOS device is an iPad
   static Future<bool> _isIpad() async {
     final iosInfo = await DeviceInfoPlugin().iosInfo;
     if (iosInfo.model!.toLowerCase().contains('ipad')) {

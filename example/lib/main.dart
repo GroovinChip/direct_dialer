@@ -4,24 +4,13 @@ import 'package:direct_dialer/direct_dialer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final directDialer = await DirectDialer.init();
+void main() {
   runApp(
-    MyApp(
-      directDialer: directDialer,
-    ),
+    MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({
-    Key? key,
-    required this.directDialer,
-  }) : super(key: key);
-
-  final DirectDialer directDialer;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,20 +21,12 @@ class MyApp extends StatelessWidget {
           fillColor: Colors.grey.shade300,
         ),
       ),
-      home: DirectDialerExample(
-        directDialer: directDialer,
-      ),
+      home: DirectDialerExample(),
     );
   }
 }
 
 class DirectDialerExample extends StatefulWidget {
-  const DirectDialerExample({
-    Key? key,
-    required this.directDialer,
-  }) : super(key: key);
-
-  final DirectDialer directDialer;
   @override
   _DirectDialerExampleState createState() => _DirectDialerExampleState();
 }
@@ -77,10 +58,16 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
                 children: [
                   if (Platform.isAndroid ||
                       (Platform.isIOS && !DirectDialer.onIpad)) ...[
-                    DialButton(
-                      number: _controller.text,
-                      dialer: widget.directDialer,
-                    ),
+                    ElevatedButton.icon(
+                      icon: Icon(Icons.phone),
+                      label: Text('DIAL'),
+                      onPressed: () async {
+                        if (_controller.text.isNotEmpty) {
+                          final dialer = await DirectDialer.instance;
+                          await dialer.dial(_controller.text);
+                        }
+                      },
+                    )
                   ],
                   if (DirectDialer.onIpad || Platform.isMacOS) ...[
                     ElevatedButton.icon(
@@ -90,8 +77,10 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
                       icon: Icon(Icons.video_call),
                       label: Text('FACETIME VIDEO'),
                       onPressed: () async {
-                        await widget.directDialer
-                            .dialFaceTime(_controller.text, true);
+                        if (_controller.text.isNotEmpty) {
+                          final dialer = await DirectDialer.instance;
+                          await dialer.dialFaceTime(_controller.text, true);
+                        }
                       },
                     ),
                     ElevatedButton.icon(
@@ -101,8 +90,10 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
                       icon: Icon(Icons.phone_in_talk),
                       label: Text('FACETIME AUDIO'),
                       onPressed: () async {
-                        await widget.directDialer
-                            .dialFaceTime(_controller.text, false);
+                        if (_controller.text.isNotEmpty) {
+                          final dialer = await DirectDialer.instance;
+                          await dialer.dialFaceTime(_controller.text, false);
+                        }
                       },
                     ),
                   ],
@@ -112,28 +103,6 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class DialButton extends StatelessWidget {
-  const DialButton({
-    Key? key,
-    required this.number,
-    required this.dialer,
-  }) : super(key: key);
-
-  final String number;
-  final DirectDialer dialer;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      icon: Icon(Icons.phone),
-      label: Text('DIAL'),
-      onPressed: () async {
-        await dialer.dial(number);
-      },
     );
   }
 }
