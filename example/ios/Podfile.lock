@@ -1,0 +1,22 @@
+PODS:
+  - call_number (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - call_number (from `.symlinks/plugins/call_number/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  call_number:
+    :path: ".symlinks/plugins/call_number/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  call_number: f81356878ef4b14a0f440ffc1fc4103d57ce11e0
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+
+PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
+
+COCOAPODS: 1.10.1
