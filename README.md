@@ -10,11 +10,26 @@ Allows Flutter applications to directly dial a phone number.
 
 ## Usage
 
+1. Configure your main method as follows:
 ```dart
-Future<void> dial() async {
-  await DirectDialer.dial('123-456-7890');
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final directDialer = await DirectDialer.init();
 }
 ```
-
-## Roadmap
-- [ ] Support initiating Facetime video/audio calls for iPad, macOS (maybe web on macOS too)
+2. Pass your instance of `DirectDialer` through your widget tree however you prefer (Provider, Riverpod, etc.)
+3a. For Android/iOS:
+```dart
+Future<void> dial() async {
+  await directDialer.dial('123-456-7890');
+}
+```
+3b. For iOS, iPad, macOS:
+```dart
+Future<void> dial() async {
+  // FaceTime video
+  await directDialer.dialFaceTime('123-456-7890', true);
+  // FaceTime audio
+  await directDialer.dialFaceTime('123-456-7890', false);
+}
+```

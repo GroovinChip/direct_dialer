@@ -14,9 +14,10 @@ dependencies:
   device_info_plus: ^1.0.0
   intent:
     git:
-      url: git@github.com:nagoya0/intent.git
+      url: https://github.com/nagoya0/intent.git
       ref: 08331747b05d3ef2cdf81979825eb3d05a035190
   permission_handler: ^6.1.1
+  url_launcher: ^6.0.2
 
 dev_dependencies:
   flutter_test:
