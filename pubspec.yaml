@@ -12,10 +12,6 @@ dependencies:
     sdk: flutter
     
   device_info_plus: ^1.0.1
-#  intent:
-#    git:
-#      url: https://github.com/nagoya0/intent.git
-#      ref: 08331747b05d3ef2cdf81979825eb3d05a035190
   intent_ns: ^2.0.0
   permission_handler: ^7.0.0
   url_launcher: ^6.0.2
