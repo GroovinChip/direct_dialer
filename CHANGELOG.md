@@ -1,3 +1,7 @@
+## 1.0.1
+* Migrate to the `android_intent_plus` plugin
+* Update `permission_handler`
+
 ## 1.0.0
 * pub.dev release
 
