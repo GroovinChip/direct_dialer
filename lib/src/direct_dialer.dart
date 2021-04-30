@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/services.dart';
-import 'package:intent_ns/action.dart';
-import 'package:intent_ns/intent.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
@@ -33,22 +32,20 @@ class DirectDialer {
     final phonePermission = await Permission.phone.status;
 
     if (Platform.isAndroid) {
+      final intent = AndroidIntent(
+        action: 'android.intent.action.CALL',
+        data: 'tel:$number',
+      );
       if (phonePermission.isDenied) {
         Permission.phone.request().then((status) {
           if (status.isGranted) {
-            Intent()
-              ..setAction(Action.ACTION_CALL)
-              ..setData(Uri.parse('tel:$number'))
-              ..startActivity();
+            intent.launch();
           }
         });
       }
       if (phonePermission.isGranted) {
         try {
-          Intent()
-            ..setAction(Action.ACTION_CALL)
-            ..setData(Uri.parse('tel:$number'))
-            ..startActivity();
+          await intent.launch();
         } catch (e) {
           print(e);
         }

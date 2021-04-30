@@ -1,6 +1,6 @@
 name: direct_dialer
 description: Allows Flutter applications to directly dial a phone number.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/GroovinChip/direct_dialer
 
 environment:
@@ -11,9 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
     
+  android_intent_plus: ^1.0.1
   device_info_plus: ^1.0.1
-  intent_ns: ^2.0.0
-  permission_handler: ^7.0.0
+  permission_handler: ^7.1.0
   url_launcher: ^6.0.2
 
 dev_dependencies:
