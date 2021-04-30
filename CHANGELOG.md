@@ -1,3 +1,6 @@
+## 1.0.0
+* pub.dev release
+
 ## 0.2.1
 * Update dependencies
 

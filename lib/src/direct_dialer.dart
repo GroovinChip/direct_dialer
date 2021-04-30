@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/services.dart';
-import 'package:intent/action.dart';
-import 'package:intent/intent.dart';
+import 'package:intent_ns/action.dart';
+import 'package:intent_ns/intent.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
@@ -21,7 +21,6 @@ class DirectDialer {
     }
     return directDialer;
   }
-
 
   static const MethodChannel _channel = const MethodChannel('direct_dialer');
   static late IosDeviceInfo _iosDeviceInfo;
