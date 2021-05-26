@@ -1,3 +1,6 @@
+## 1.0.1+1
+* Update `permission_handler` dependency
+
 ## 1.0.1
 * Migrate to the `android_intent_plus` plugin
 * Update `permission_handler`
