@@ -2,15 +2,16 @@ import 'dart:io';
 
 import 'package:direct_dialer/direct_dialer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 void main() {
   runApp(
-    MyApp(),
+    const MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,14 +22,16 @@ class MyApp extends StatelessWidget {
           fillColor: Colors.grey.shade300,
         ),
       ),
-      home: DirectDialerExample(),
+      home: const DirectDialerExample(),
     );
   }
 }
 
 class DirectDialerExample extends StatefulWidget {
+  const DirectDialerExample({Key? key}) : super(key: key);
+
   @override
-  _DirectDialerExampleState createState() => _DirectDialerExampleState();
+  State<DirectDialerExample> createState() => _DirectDialerExampleState();
 }
 
 class _DirectDialerExampleState extends State<DirectDialerExample> {
@@ -57,7 +60,7 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
               TextField(
                 controller: _controller,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Phone Number',
                 ),
               ),
@@ -68,8 +71,8 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
                   if (Platform.isAndroid ||
                       (Platform.isIOS && !DirectDialer.onIpad)) ...[
                     ElevatedButton.icon(
-                      icon: Icon(Icons.phone),
-                      label: Text('DIAL'),
+                      icon: const Icon(Icons.phone),
+                      label: const Text('DIAL'),
                       onPressed: () async {
                         if (_controller.text.isNotEmpty) {
                           await dialer.dial(_controller.text);
@@ -82,8 +85,8 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.green,
                       ),
-                      icon: Icon(Icons.video_call),
-                      label: Text('FACETIME VIDEO'),
+                      icon: const Icon(Icons.video_call),
+                      label: const Text('FACETIME VIDEO'),
                       onPressed: () async {
                         if (_controller.text.isNotEmpty) {
                           final dialer = await DirectDialer.instance;
@@ -95,8 +98,8 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.green,
                       ),
-                      icon: Icon(Icons.phone_in_talk),
-                      label: Text('FACETIME AUDIO'),
+                      icon: const Icon(Icons.phone_in_talk),
+                      label: const Text('FACETIME AUDIO'),
                       onPressed: () async {
                         if (_controller.text.isNotEmpty) {
                           final dialer = await DirectDialer.instance;

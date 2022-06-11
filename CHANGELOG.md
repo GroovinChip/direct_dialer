@@ -1,3 +1,7 @@
+## 1.2.0
+* Flutter 3 Upgrade
+* Use dart/flutter lints
+
 ## 1.1.0
 * Use `connectivity_plus` to check if calls can be made & handle retries
 

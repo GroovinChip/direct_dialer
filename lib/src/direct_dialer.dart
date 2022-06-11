@@ -22,7 +22,7 @@ class DirectDialer {
     return directDialer;
   }
 
-  static const MethodChannel _channel = const MethodChannel('direct_dialer');
+  static const MethodChannel _channel = MethodChannel('direct_dialer');
   static late IosDeviceInfo _iosDeviceInfo;
   static bool onIpad = false;
 
@@ -92,16 +92,21 @@ class DirectDialer {
   Future<void> dialFaceTime(String number, bool videoCall) async {
     if (Platform.isIOS || Platform.isMacOS) {
       if (videoCall) {
-        if (await url_launcher.canLaunch('facetime:$number')) {
-          await url_launcher.launch('facetime:$number');
+        if (await url_launcher.canLaunchUrl(Uri.parse('facetime:$number'))) {
+          await url_launcher.launchUrl(Uri.parse('facetime:$number'));
         }
       } else {
-        if (await url_launcher.canLaunch('facetime-audio:$number')) {
-          await url_launcher.launch('facetime-audio:$number');
+        if (await url_launcher.canLaunchUrl(
+          Uri.parse('facetime-audio:$number'),
+        )) {
+          await url_launcher.launchUrl(Uri.parse('facetime-audio:$number'));
         }
       }
     } else {
-      throw 'This action is only available on iOS and macOS';
+      throw PlatformException(
+        code: 'direct_dialer',
+        message: 'This action is only available on iOS and macOS',
+      );
     }
   }
 
