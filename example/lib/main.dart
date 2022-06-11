@@ -32,7 +32,16 @@ class DirectDialerExample extends StatefulWidget {
 }
 
 class _DirectDialerExampleState extends State<DirectDialerExample> {
+  late DirectDialer dialer;
   final _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    setupDialer();
+  }
+
+  Future<void> setupDialer() async => dialer = await DirectDialer.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +72,6 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
                       label: Text('DIAL'),
                       onPressed: () async {
                         if (_controller.text.isNotEmpty) {
-                          final dialer = await DirectDialer.instance;
                           await dialer.dial(_controller.text);
                         }
                       },

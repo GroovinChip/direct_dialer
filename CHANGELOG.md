@@ -1,5 +1,5 @@
-## 1.0.1+1
-* Update `permission_handler` dependency
+## 1.1.0
+* Use `connectivity_plus` to check if calls can be made & handle retries
 
 ## 1.0.1
 * Migrate to the `android_intent_plus` plugin

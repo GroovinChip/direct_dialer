@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:android_intent_plus/android_intent.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -16,7 +17,7 @@ class DirectDialer {
     final directDialer = DirectDialer._();
     if (Platform.isIOS) {
       _iosDeviceInfo = await DeviceInfoPlugin().iosInfo;
-      onIpad = await DirectDialer._isIpad();
+      onIpad = await _isIpad();
     }
     return directDialer;
   }
@@ -28,7 +29,11 @@ class DirectDialer {
   /// Dials a phone number directly.
   ///
   /// Uses the Intent package for the Android implementation.
-  Future<void> dial(String number, {bool useFaceTimeAudio = false}) async {
+  Future<void> dial(
+    String number, {
+    bool retryWithFaceTime = false,
+    bool useFaceTimeAudio = false,
+  }) async {
     final phonePermission = await Permission.phone.status;
 
     if (Platform.isAndroid) {
@@ -53,14 +58,33 @@ class DirectDialer {
     }
 
     if (Platform.isIOS || onIpad) {
+      // Check cellular or wifi
+      final connectivityResult = await _connectivityCheck();
+      // Check if physical device - emulators can't make calls
       if (_iosDeviceInfo.isPhysicalDevice) {
-        await _channel.invokeMethod(
-          'dial',
-          <String, Object>{'number': number},
-        );
+        // If cellular, make a call as normal
+        try {
+          if (connectivityResult == ConnectivityResult.mobile) {
+            await _channel.invokeMethod(
+              'dial',
+              <String, Object>{'number': number},
+            );
+          }
+        } catch (e) {
+          if (retryWithFaceTime) {
+            await dialFaceTime(number, useFaceTimeAudio);
+          }
+        }
+      } else if (_iosDeviceInfo.isPhysicalDevice &&
+          connectivityResult == ConnectivityResult.wifi) {
+        await dialFaceTime(number, useFaceTimeAudio);
       } else {
         throw 'This action is not available on the iOS simulator.';
       }
+    }
+
+    if (Platform.isMacOS) {
+      await dialFaceTime(number, useFaceTimeAudio);
     }
   }
 
@@ -79,6 +103,10 @@ class DirectDialer {
     } else {
       throw 'This action is only available on iOS and macOS';
     }
+  }
+
+  Future<ConnectivityResult> _connectivityCheck() async {
+    return await (Connectivity().checkConnectivity());
   }
 
   /// Checks if the current iOS device is an iPad
