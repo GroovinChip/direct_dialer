@@ -117,7 +117,7 @@ class DirectDialer {
   /// Checks if the current iOS device is an iPad
   static Future<bool> _isIpad() async {
     final iosInfo = await DeviceInfoPlugin().iosInfo;
-    if (iosInfo.model!.toLowerCase().contains('ipad')) {
+    if (iosInfo.model.toLowerCase().contains('ipad')) {
       return true;
     }
     return false;

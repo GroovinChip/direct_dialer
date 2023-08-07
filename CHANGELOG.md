@@ -1,3 +1,6 @@
+## 2.0.0
+* Dart 3 Support
+
 ## 1.2.0
 * Flutter 3 Upgrade
 * Use dart/flutter lints

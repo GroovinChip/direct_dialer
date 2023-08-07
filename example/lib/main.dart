@@ -83,7 +83,7 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
                   if (DirectDialer.onIpad || Platform.isMacOS) ...[
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
+                        backgroundColor: Colors.green,
                       ),
                       icon: const Icon(Icons.video_call),
                       label: const Text('FACETIME VIDEO'),
@@ -96,7 +96,7 @@ class _DirectDialerExampleState extends State<DirectDialerExample> {
                     ),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
+                        backgroundColor: Colors.green,
                       ),
                       icon: const Icon(Icons.phone_in_talk),
                       label: const Text('FACETIME AUDIO'),
