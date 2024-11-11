@@ -1,3 +1,7 @@
+## 2.0.1
+* Dependency updates
+* Code quality improvements
+
 ## 2.0.0
 * Dart 3 Support
 
